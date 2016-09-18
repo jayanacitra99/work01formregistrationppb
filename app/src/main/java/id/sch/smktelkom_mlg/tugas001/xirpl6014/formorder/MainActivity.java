@@ -2,6 +2,7 @@ package id.sch.smktelkom_mlg.tugas001.xirpl6014.formorder;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -53,6 +54,51 @@ public class MainActivity extends AppCompatActivity {
         rbL = (RadioButton) findViewById(R.id.radioButtonL);
         btnO = (Button) findViewById(R.id.buttonO);
 
+        btnO.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                doProcess();
+            }
+        });
+    }
+
+    private void doProcess() {
+
+        if (isValid()) {
+            String name = etN.getText().toString();
+            String address = etA.getText().toString();
+            String pnm = etPN.getText().toString();
+            String nos = spr.getSelectedItem().toString();
+
+            String hsl = "\n Your Order :\n";
+            int startlen = hsl.length();
+
+            if (cbCB.isChecked()) hsl += cbCB.getText() + "\n";
+            if (cbCG.isChecked()) hsl += cbCG.getText() + "\n";
+            if (cbCBl.isChecked()) hsl += cbCBl.getText() + "\n";
+            if (cbS42.isChecked()) hsl += cbS42.getText() + "\n";
+            if (cbS43.isChecked()) hsl += cbS43.getText() + "\n";
+            if (cbS44.isChecked()) hsl += cbS44.getText() + "\n";
+            if (cbS45.isChecked()) hsl += cbS45.getText() + "\n";
+            if (hsl.length() == startlen) hsl += "You not choice yet";
+
+            String hsl2 = "Your Shoes Model :\n ";
+            if (rbL.isChecked()) {
+                hsl2 = rbL.getText().toString();
+            } else if (rbH.isChecked()) {
+                hsl2 = rbH.getText().toString();
+            }
+
+            tvR.setText
+                    (
+                            "Name :\n " + name +
+                                    "\n Address :\n " + address +
+                                    "\n Phone Number :\n " + pnm +
+                                    "\n Number of Shoes :\n " + nos + hsl + hsl2
+
+                    );
+        }
 
     }
 }
